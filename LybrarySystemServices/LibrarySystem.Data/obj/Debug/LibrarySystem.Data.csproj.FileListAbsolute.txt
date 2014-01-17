@@ -1,0 +1,12 @@
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.dll.config
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.dll
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.pdb
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.dll
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Models.dll
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Models.pdb
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.xml
+D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.csprojResolveAssemblyReference.cache
+D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.dll
+D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.pdb

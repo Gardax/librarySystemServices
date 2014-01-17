@@ -1,0 +1,5 @@
+D:\LybrarySystemServices\LybrarySystem.Models\bin\Debug\LibrarySystem.Models.dll
+D:\LybrarySystemServices\LybrarySystem.Models\bin\Debug\LibrarySystem.Models.pdb
+D:\LybrarySystemServices\LybrarySystem.Models\obj\Debug\LibrarySystem.Models.csprojResolveAssemblyReference.cache
+D:\LybrarySystemServices\LybrarySystem.Models\obj\Debug\LibrarySystem.Models.dll
+D:\LybrarySystemServices\LybrarySystem.Models\obj\Debug\LibrarySystem.Models.pdb
