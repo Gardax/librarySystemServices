@@ -26,7 +26,7 @@ namespace LibrarySystem.Services.Controllers
                         var author = context.Authors.FirstOrDefault(a => a.Name == book.AuthorName);
                         if(author==null)
                         {
-                            context.Authors.Add(new Author()
+                            author=context.Authors.Add(new Author()
                                                     {
                                                         Name = book.AuthorName
                                                     });
