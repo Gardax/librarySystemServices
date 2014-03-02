@@ -18,5 +18,9 @@ namespace LibrarySystem.Services.Models
         public string Description { get; set; }
 
         public DateTime DateToreturn { get; set; }
+
+        public int UserUniqueNumber { get; set; }
+
+        public string UserName { get; set; }
     }
 }

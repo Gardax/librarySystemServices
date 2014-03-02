@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.ObjectModel;
+using System.Text;
 using LibrarySystem.Data;
 using System;
 using System.Collections.Generic;
@@ -140,6 +141,55 @@ namespace LibrarySystem.Services.Controllers
             }
         }
 
+        [HttpGet]
+        [ActionName("getUserByUniqueNumber")]
+        public HttpResponseMessage GetUserByUniqueNumber(int uniqueNumber)
+        {
+            try
+            {
+                var context = new LibrarySystemContext();
+                using (context)
+                {
+                    var user = context.Users.FirstOrDefault(u => u.UniqueNumber == uniqueNumber);
+                    if(user==null)
+                    {
+                        throw new Exception("There is no such user!");
+                    }
+
+                    var booksToReturn =
+                        context.UsersBooks.Where(ub => ub.User.UniqueNumber == uniqueNumber && ub.IsReturned == false);
+
+                    var userInfo = new DetailedUserModel()
+                                       {
+                                           Id = user.Id,
+                                           UniqueNumber = user.UniqueNumber,
+                                           Name = user.Name,
+                                           
+                                       };
+                    userInfo.BooksToReturn=new Collection<BookToReturnModel>();
+                    foreach (var book in booksToReturn)
+                    {
+                        userInfo.BooksToReturn.Add(new BookToReturnModel()
+                                                       {
+                                                           Key = book.Book.Key,
+                                                           Title = book.Book.Title,
+                                                           AuthorName = book.Book.Author.Name,
+                                                           DateToreturn = book.DateToReturn,
+                                                           Year = book.Book.Year,
+                                                           Description = book.Book.Description
+                                                       });
+                    }
+
+                    var response = this.Request.CreateResponse(HttpStatusCode.OK, userInfo);
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+                return response;
+            }
+        }
 
         private void ValidateName(string name)
         {

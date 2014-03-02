@@ -10,3 +10,15 @@ D:\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.SqlServer.
 D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.csprojResolveAssemblyReference.cache
 D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.dll
 D:\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.pdb
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.dll.config
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Data.pdb
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Models.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\LibrarySystem.Models.pdb
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.xml
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.csprojResolveAssemblyReference.cache
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Data\obj\Debug\LibrarySystem.Data.pdb

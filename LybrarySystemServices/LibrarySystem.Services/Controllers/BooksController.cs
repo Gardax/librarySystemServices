@@ -18,6 +18,7 @@ namespace LibrarySystem.Services.Controllers
         {
             try
             {
+                int errors = 0;
                 var context = new LibrarySystemContext();
                 using(context)
                 {
@@ -47,13 +48,17 @@ namespace LibrarySystem.Services.Controllers
                         }
                         else
                         {
-                            throw new ArgumentException("There is a book with the same unique number already!");
+                            errors++;
                         }
 
                     }
                     context.SaveChanges();
+                    
                 }
-
+                if (errors > 0)
+                {
+                    throw new Exception("There is e book with the same code and it is NOT replaced!");
+                }
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 return response;
             }
@@ -173,8 +178,43 @@ namespace LibrarySystem.Services.Controllers
         }
 
         [HttpGet]
+        [ActionName("getBooksThatMustBeReturned")]
+        public HttpResponseMessage GetLBooksThatMustBeReturned()
+        {
+            try
+            {
+                var context = new LibrarySystemContext();
+
+                var booksEntity = context.UsersBooks.Where(ub => ub.DateToReturn < DateTime.Now);
+
+                var books = from book in booksEntity
+                            select new BookToReturnModel()
+                                       {
+                                           Title = book.Book.Title,
+                                           AuthorName = book.Book.Author.Name,
+                                           Description = book.Book.Description,
+                                           Key = book.Book.Key,
+                                           Year = book.Book.Year,
+                                           UserUniqueNumber = book.User.UniqueNumber,
+                                           UserName = book.User.Name,
+                                           DateToreturn = book.DateToReturn
+                                       };
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                var response = this.Request.CreateResponse(HttpStatusCode.BadRequest,
+                                                           ex.Message);
+                return response;
+            }
+        }
+
+        [HttpGet]
         [ActionName("getBookDetailed")]
-        public HttpResponseMessage getBookDetailed(string bookKey, int userUniqueNumber)
+        public HttpResponseMessage GetBookDetailed(string bookKey)
         {
             try
             {
@@ -219,45 +259,44 @@ namespace LibrarySystem.Services.Controllers
             try
             {
                 var context = new LibrarySystemContext();
-                using (context)
+
+                if (query == null || query == "")
                 {
-                    if(query==null || query=="")
-                    {
-                        throw  new ArgumentException("Invalid search!");
-                    }
-
-                    IQueryable<Book> booksEntity;
-                    if (searchBy == SearchBy.Key)
-                    {
-                        booksEntity = context.Books.Where(b => b.Key.Contains(query));
-                    }
-                    else if(searchBy==SearchBy.Author)
-                    {
-                        booksEntity = context.Books.Where(b => b.Author.Name.Contains(query));
-                    }
-                    else if (searchBy == SearchBy.Title)
-                    {
-                        booksEntity = context.Books.Where(b => b.Title.Contains(query));
-                    }
-                    else
-                    {
-                        booksEntity = context.Books.Where(b => b.Key.Contains(query) || b.Author.Name.Contains(query)
-                                                         || b.Title.Contains(query));
-                    }
-
-                    var books = from book in booksEntity
-                                select new BookModel()
-                                {
-                                    Title = book.Title,
-                                    AuthorName = book.Author.Name,
-                                    Description = book.Description,
-                                    Key = book.Key,
-                                    Year = book.Year,
-                                };
-
-                    var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
-                    return response;
+                    throw new ArgumentException("Invalid search!");
                 }
+
+                IQueryable<Book> booksEntity;
+                if (searchBy == SearchBy.Key)
+                {
+                    booksEntity = context.Books.Where(b => b.Key.Contains(query));
+                }
+                else if (searchBy == SearchBy.Author)
+                {
+                    booksEntity = context.Books.Where(b => b.Author.Name.Contains(query));
+                }
+                else if (searchBy == SearchBy.Title)
+                {
+                    booksEntity = context.Books.Where(b => b.Title.Contains(query));
+                }
+                else
+                {
+                    booksEntity = context.Books.Where(b => b.Key.Contains(query) || b.Author.Name.Contains(query)
+                                                           || b.Title.Contains(query));
+                }
+
+                var books = from book in booksEntity
+                            select new BookModel()
+                                       {
+                                           Title = book.Title,
+                                           AuthorName = book.Author.Name,
+                                           Description = book.Description,
+                                           Key = book.Key,
+                                           Year = book.Year,
+                                       };
+
+                var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
+                return response;
+
             }
             catch (Exception ex)
             {
@@ -288,7 +327,8 @@ namespace LibrarySystem.Services.Controllers
                         throw new ArgumentException("There is no such user!");
                     }
 
-                    var userBook = context.UsersBooks.FirstOrDefault(ub => ub.Book == book && ub.User == user);
+                    var userBook = context.UsersBooks.FirstOrDefault(ub => ub.Book.Key == book.Key
+                        && ub.User.UniqueNumber == user.UniqueNumber);
                     if (userBook == null)
                     {
                         context.UsersBooks.Add(new UserBook()
@@ -299,10 +339,14 @@ namespace LibrarySystem.Services.Controllers
                                                        DateToReturn = DateTime.Now.AddDays(30)
                                                    });
                     }
-                    else
+                    else if(userBook.IsReturned==true)
                     {
                         userBook.IsReturned = false;
                         userBook.DateToReturn = DateTime.Now.AddDays(30);
+                    }
+                    else
+                    {
+                        throw new Exception("This book is already taken!");
                     }
                     context.SaveChanges();
 
@@ -372,12 +416,18 @@ namespace LibrarySystem.Services.Controllers
                         throw new ArgumentException("There is no such user!");
                     }
 
-                    var userBook=context.UsersBooks.FirstOrDefault(ub => ub.Book == book && ub.User == user);
-                    if (userBook != null)
+                    var userBook=context.UsersBooks.FirstOrDefault(ub => ub.Book.Key == book.Key && 
+                        ub.User.UniqueNumber == user.UniqueNumber);
+                    if (userBook != null && userBook.IsReturned==false)
                     {
                         userBook.IsReturned = true;
                         context.SaveChanges();
                     }
+                    else 
+                    {
+                        throw new Exception("This book was not taken by this user!");
+                    }
+                   
 
                     var response = this.Request.CreateResponse(HttpStatusCode.OK);
                     return response;
