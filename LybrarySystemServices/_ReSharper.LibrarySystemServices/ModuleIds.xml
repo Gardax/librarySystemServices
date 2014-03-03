@@ -1,0 +1,5 @@
+<Modules>
+  <Module PersistentId="6234FA7F-6440-4DEC-B734-51F1E9FBE42C" ModuleId="LibrarySystem.Services" />
+  <Module PersistentId="98692841-5C54-4DA7-93AF-866DFA02B711" ModuleId="LibrarySystem.Data" />
+  <Module PersistentId="9CA0E684-28D3-47A4-B043-7033FCE9A210" ModuleId="LibrarySystem.Models" />
+</Modules>

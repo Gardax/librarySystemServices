@@ -84,7 +84,6 @@ D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Librar
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Microsoft.Data.Edm.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Microsoft.Data.OData.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Microsoft.Web.Infrastructure.dll
-D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\Newtonsoft.Json.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\System.Net.Http.Formatting.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\System.Spatial.dll
@@ -150,3 +149,6 @@ D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\zh-Han
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\obj\Debug\LibrarySystem.Services.csprojResolveAssemblyReference.cache
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\obj\Debug\LibrarySystem.Services.dll
 D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\obj\Debug\LibrarySystem.Services.pdb
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\System.Web.Cors.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\System.Web.Http.Cors.dll
+D:\librarySystemServices\LybrarySystemServices\LibrarySystem.Services\bin\System.Web.Http.Cors.xml

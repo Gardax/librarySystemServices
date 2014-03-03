@@ -9,6 +9,8 @@ namespace LibrarySystem.Services
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+
             config.Routes.MapHttpRoute(
                 name: "Books",
                 routeTemplate: "api/books/{action}",

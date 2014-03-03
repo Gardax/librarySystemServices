@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using LibrarySystem.Data;
 using LibrarySystem.Models;
 using LibrarySystem.Services.Models;
 
 namespace LibrarySystem.Services.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BooksController : ApiController
     {
         [HttpPost]

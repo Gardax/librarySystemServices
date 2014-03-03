@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text;
+using System.Web.Http.Cors;
 using LibrarySystem.Data;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using LibrarySystem.Services.Models;
 
 namespace LibrarySystem.Services.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         public const int MinNameLength = 4;
