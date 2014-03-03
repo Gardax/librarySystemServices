@@ -153,8 +153,7 @@ namespace LibrarySystem.Services.Controllers
             try
             {
                 var context = new LibrarySystemContext();
-                using (context)
-                {
+                
                     var booksEntity = context.Books.Take(20).OrderByDescending(b => b.Id);
 
                     var books = from book in booksEntity
@@ -169,7 +168,7 @@ namespace LibrarySystem.Services.Controllers
 
                     var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
                     return response;
-                }
+                
             }
             catch(Exception ex)
             {
