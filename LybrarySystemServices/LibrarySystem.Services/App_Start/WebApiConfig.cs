@@ -29,6 +29,14 @@ namespace LibrarySystem.Services
                 });
 
             config.Routes.MapHttpRoute(
+                name: "TestConnection",
+                routeTemplate: "api/testConnection/{action}",
+                defaults: new
+                {
+                    controller = "TestConnection",
+                });
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
