@@ -147,14 +147,14 @@ namespace LibrarySystem.Services.Controllers
         }
 
         [HttpGet]
-        [ActionName("getLast20Books")]
-        public HttpResponseMessage GetLast20Books()
+        [ActionName("get20BooksFrom")]
+        public HttpResponseMessage GetLast20Books(int start)
         {
             try
             {
                 var context = new LibrarySystemContext();
                 
-                    var booksEntity = context.Books.Take(20).OrderByDescending(b => b.Id);
+                    var booksEntity = context.Books.Skip(start).Take(20).OrderByDescending(b => b.Id);
 
                     var books = from book in booksEntity
                                 select new BookModel()
