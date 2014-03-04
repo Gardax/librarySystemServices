@@ -59,7 +59,7 @@ namespace LibrarySystem.Services.Controllers
                 }
                 if (errors > 0)
                 {
-                    throw new Exception("There is e book with the same code and it is NOT replaced!");
+                    throw new Exception("Има книга със същото заглавие и тя НЕ е заменена!");
                 }
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 return response;
@@ -84,7 +84,7 @@ namespace LibrarySystem.Services.Controllers
                     var book = context.Books.FirstOrDefault(b => b.Key == key);
                     if(book==null)
                     {
-                        throw new ArgumentException("There is no book with such unique code!");
+                        throw new ArgumentException("Няма книга с такъв уникален номер!");
                     }
                     context.Books.Remove(book);
                     context.SaveChanges();
@@ -113,7 +113,7 @@ namespace LibrarySystem.Services.Controllers
                     var book = context.Books.FirstOrDefault(b => b.Key == key);
                     if (book == null)
                     {
-                        throw new ArgumentException("There is no book with such unique code!");
+                        throw new ArgumentException("Няма книга с такъв уникален номер!");
                     }
 
                     var author = context.Authors.FirstOrDefault(a => a.Name == model.AuthorName);
@@ -263,7 +263,7 @@ namespace LibrarySystem.Services.Controllers
 
                 if (query == null || query == "")
                 {
-                    throw new ArgumentException("Invalid search!");
+                    throw new ArgumentException("Невалидно търсене!");
                 }
 
                 IQueryable<Book> booksEntity;
@@ -292,7 +292,7 @@ namespace LibrarySystem.Services.Controllers
                                            AuthorName = book.Author.Name,
                                            Description = book.Description,
                                            Key = book.Key,
-                                           Year = book.Year,
+                                           Year = book.Year
                                        };
 
                 var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
@@ -321,11 +321,11 @@ namespace LibrarySystem.Services.Controllers
                     var user = context.Users.FirstOrDefault(u => u.UniqueNumber == userNumber);
                     if(book==null)
                     {
-                        throw new ArgumentException("There is no such book!");
+                        throw new ArgumentException("Няма такава книга!");
                     }
                     if(user==null)
                     {
-                        throw new ArgumentException("There is no such user!");
+                        throw new ArgumentException("Няма такъв потребител!");
                     }
 
                     var userBook = context.UsersBooks.FirstOrDefault(ub => ub.Book.Key == book.Key
@@ -347,7 +347,7 @@ namespace LibrarySystem.Services.Controllers
                     }
                     else
                     {
-                        throw new Exception("This book is already taken!");
+                        throw new Exception("Тази книга вече е взета!");
                     }
                     context.SaveChanges();
 
@@ -410,11 +410,11 @@ namespace LibrarySystem.Services.Controllers
                     var user = context.Users.FirstOrDefault(u => u.UniqueNumber == userNumber);
                     if (book == null)
                     {
-                        throw new ArgumentException("There is no such book!");
+                        throw new ArgumentException("Няма такава книга!");
                     }
                     if (user == null)
                     {
-                        throw new ArgumentException("There is no such user!");
+                        throw new ArgumentException("Няма такъв потребител!");
                     }
 
                     var userBook=context.UsersBooks.FirstOrDefault(ub => ub.Book.Key == book.Key && 
@@ -426,7 +426,7 @@ namespace LibrarySystem.Services.Controllers
                     }
                     else 
                     {
-                        throw new Exception("This book was not taken by this user!");
+                        throw new Exception("Тази книга не е взета от този потребител!");
                     }
                    
 
@@ -455,11 +455,11 @@ namespace LibrarySystem.Services.Controllers
                     var user = context.Users.FirstOrDefault(u => u.UniqueNumber == model.UserUniqueNumber);
                     if (book == null)
                     {
-                        throw new ArgumentException("There is no such book!");
+                        throw new ArgumentException("Няма такава книга!");
                     }
                     if (user == null)
                     {
-                        throw new ArgumentException("There is no such user!");
+                        throw new ArgumentException("Няма такъв потребител!");
                     }
 
                     book.Notes.Add(new Note()

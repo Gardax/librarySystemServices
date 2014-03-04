@@ -22,5 +22,7 @@ namespace LibrarySystem.Services.Models
         public int UserUniqueNumber { get; set; }
 
         public string UserName { get; set; }
+
+        public bool isAvailable { get; set; }
     }
 }

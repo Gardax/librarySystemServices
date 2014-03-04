@@ -86,7 +86,7 @@ namespace LibrarySystem.Services.Controllers
 
                     if (user == null)
                     {
-                        throw new InvalidOperationException("Invalid unique number or password");
+                        throw new InvalidOperationException("Грешна парола или потребителски номер");
                     }
                     if (user.SessionKey == null)
                     {
@@ -126,7 +126,7 @@ namespace LibrarySystem.Services.Controllers
                     var user = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
                     if (user == null)
                     {
-                        throw new ArgumentException("Invalid user authentication.");
+                        throw new ArgumentException("Невалидна сесия.");
                     }
 
                     user.SessionKey = null;
@@ -155,7 +155,7 @@ namespace LibrarySystem.Services.Controllers
                     var user = context.Users.FirstOrDefault(u => u.UniqueNumber == uniqueNumber);
                     if(user==null)
                     {
-                        throw new Exception("There is no such user!");
+                        throw new Exception("Няма такъв потребител!");
                     }
 
                     var booksToReturn =
@@ -197,12 +197,12 @@ namespace LibrarySystem.Services.Controllers
         {
             if (name == null)
             {
-                throw new ArgumentNullException("Name cannot be null");
+                throw new ArgumentNullException("Името не може да бъде празно");
             }
             if (name.Length < MinNameLength)
             {
                 throw new ArgumentOutOfRangeException(
-                    string.Format("Name must be at least {0} characters long",
+                    string.Format("Името трябва да бъде поне {0} символа",
                     MinNameLength));
             }
         }
@@ -211,7 +211,7 @@ namespace LibrarySystem.Services.Controllers
         {
             if (authCode == null || authCode.Length != Sha1Length)
             {
-                throw new ArgumentOutOfRangeException("Password should be encrypted");
+                throw new ArgumentOutOfRangeException("Паролата трябва да бъде криптирана");
             }
         }
 
