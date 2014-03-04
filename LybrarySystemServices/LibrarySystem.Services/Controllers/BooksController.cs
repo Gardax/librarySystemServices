@@ -153,8 +153,8 @@ namespace LibrarySystem.Services.Controllers
             try
             {
                 var context = new LibrarySystemContext();
-                
-                    var booksEntity = context.Books.Skip(start).Take(20).OrderByDescending(b => b.Id);
+
+                var booksEntity = context.Books.OrderByDescending(b => b.Id).Skip(start).Take(20);
 
                     var books = from book in booksEntity
                                 select new BookModel()
