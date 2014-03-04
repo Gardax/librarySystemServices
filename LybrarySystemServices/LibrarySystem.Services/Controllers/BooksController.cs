@@ -370,9 +370,9 @@ namespace LibrarySystem.Services.Controllers
             try
             {
                 var context = new LibrarySystemContext();
-                using (context)
-                {
-                    var booksEntity = context.UsersBooks.Where(ub => ub.User.UniqueNumber == uniqueNumber);
+                
+                    var booksEntity = context.UsersBooks.Where(ub => ub.User.UniqueNumber == uniqueNumber)
+                        .OrderBy(ub=>ub.DateToReturn);
 
                     var books = from book in booksEntity
                                 select new BookToReturnModel()
@@ -387,7 +387,7 @@ namespace LibrarySystem.Services.Controllers
 
                     var response = this.Request.CreateResponse(HttpStatusCode.OK, books);
                     return response;
-                }
+                
             }
             catch (Exception ex)
             {
