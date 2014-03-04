@@ -372,7 +372,7 @@ namespace LibrarySystem.Services.Controllers
                 var context = new LibrarySystemContext();
                 
                     var booksEntity = context.UsersBooks.Where(ub => ub.User.UniqueNumber == uniqueNumber)
-                        .OrderBy(ub=>ub.DateToReturn);
+                        .OrderByDescending(ub=>ub.DateToReturn);
 
                     var books = from book in booksEntity
                                 select new BookToReturnModel()
